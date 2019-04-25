@@ -93,7 +93,7 @@ int worker (void)
 			};
 
 
-			rc = fcntl(f->fd, lockwait ? F_SETLKW : F_SETLK, &flock);
+			rc = fcntl(f->fd, lockwait ? F_OFD_SETLKW : F_OFD_SETLK, &flock);
 			if (rc < 0) {
 				perror("fcntl lock");
 				do_unlock = false;
@@ -113,7 +113,7 @@ int worker (void)
 			};
 
 			if (false && do_unlock) {
-				rc = fcntl(f->fd, F_SETLK, &flock);
+				rc = fcntl(f->fd, F_OFD_SETLK, &flock);
 				if (rc < 0) {
 					perror("fcntl unlock");
 				}
